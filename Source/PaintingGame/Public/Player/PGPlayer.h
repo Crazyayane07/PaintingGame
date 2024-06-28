@@ -32,7 +32,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UTextRenderComponent* TextRenderComp;
 
-	UPROPERTY(EditDefaultsOnly, Category = "SetOp")
+	UPROPERTY(EditDefaultsOnly, Category = "SetUp")
 	FName HeadSocket;
 
 };

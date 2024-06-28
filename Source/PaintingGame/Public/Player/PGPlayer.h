@@ -4,10 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "InputActionValue.h"
 #include "PGPlayer.generated.h"
 
 class UCameraComponent;
 class UTextRenderComponent;
+class UPGInputData;
+class UInputMappingContext;
 
 UCLASS()
 class PAINTINGGAME_API APGPlayer : public ACharacter
@@ -35,4 +38,21 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "SetUp")
 	FName HeadSocket;
 
+	UPROPERTY(EditDefaultsOnly, Category = "SetUp|Input")
+	UPGInputData* InputData;
+
+	UPROPERTY(EditDefaultsOnly, Category = "SetUp|Input")
+	UInputMappingContext* InputMappingContext;
+
+	void LookUp(const FInputActionValue& Value);
+
+	void Turn(const FInputActionValue& Value);
+
+	void MoveForward(const FInputActionValue& Value);
+
+	void MoveRight(const FInputActionValue& Value);
+
+	void TryInteract();
+
+	void TriggerJump();
 };

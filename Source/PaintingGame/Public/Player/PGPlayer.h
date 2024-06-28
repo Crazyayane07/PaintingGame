@@ -4,7 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "InputActionValue.h"
 #include "PGPlayer.generated.h"
+
+class UCameraComponent;
+class UTextRenderComponent;
+class UPGInputData;
+class UInputMappingContext;
+class USpringArmComponent;
 
 UCLASS()
 class PAINTINGGAME_API APGPlayer : public ACharacter
@@ -12,18 +19,45 @@ class PAINTINGGAME_API APGPlayer : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
+
 	APGPlayer();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+protected:
+
+	virtual void BeginPlay() override;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UCameraComponent* CameraComp;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UTextRenderComponent* TextRenderComp;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	USpringArmComponent* SpingArmComp;
+
+	UPROPERTY(EditDefaultsOnly, Category = "SetUp")
+	FName HeadSocket;
+
+	UPROPERTY(EditDefaultsOnly, Category = "SetUp|Input")
+	UPGInputData* InputData;
+
+	UPROPERTY(EditDefaultsOnly, Category = "SetUp|Input")
+	UInputMappingContext* InputMappingContext;
+
+	void LookUp(const FInputActionValue& Value);
+
+	void Turn(const FInputActionValue& Value);
+
+	void MoveForward(const FInputActionValue& Value);
+
+	void MoveRight(const FInputActionValue& Value);
+
+	void TryInteract();
+
+	void TriggerJump();
 
 };

@@ -42,8 +42,8 @@ void APGPlayer::BeginPlay()
 
 void APGPlayer::LookUp(const FInputActionValue& Value)
 {
-	const float MoveValue = Value.Get<float>();
-	AddControllerYawInput(MoveValue);
+	const float MoveValue = Value.Get<float>() * -1.f;
+	AddControllerPitchInput(MoveValue);
 }
 
 void APGPlayer::Turn(const FInputActionValue& Value)

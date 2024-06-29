@@ -56,6 +56,7 @@ protected:
 
 	void MoveRight(const FInputActionValue& Value);
 
+	UFUNCTION(BlueprintImplementableEvent, category = "Interaction")
 	void TryInteract();
 
 	void TriggerJump();

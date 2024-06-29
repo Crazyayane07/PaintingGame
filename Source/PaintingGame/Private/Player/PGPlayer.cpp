@@ -74,11 +74,6 @@ void APGPlayer::MoveRight(const FInputActionValue& Value)
 	AddMovementInput(Directon, TurnValue);
 }
 
-void APGPlayer::TryInteract()
-{
-
-}
-
 void APGPlayer::TriggerJump()
 {
 	Jump();

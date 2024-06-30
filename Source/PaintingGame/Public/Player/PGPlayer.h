@@ -12,6 +12,7 @@ class UTextRenderComponent;
 class UPGInputData;
 class UInputMappingContext;
 class USpringArmComponent;
+class UPGBlockerHandlerComponent;
 
 UCLASS()
 class PAINTINGGAME_API APGPlayer : public ACharacter
@@ -26,12 +27,18 @@ public:
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintPure, category = "Blockers")
+	bool IsBlocking(const EBlockers& Blocker);
+
 protected:
 
 	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UCameraComponent* CameraComp;
+
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPGBlockerHandlerComponent* BlockerHandlerComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UTextRenderComponent* TextRenderComp;

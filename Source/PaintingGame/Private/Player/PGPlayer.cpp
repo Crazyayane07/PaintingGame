@@ -8,6 +8,7 @@
 #include "Data/PGInputData.h"
 #include "EnhancedInputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Player/PGBlockerHandlerComponent.h"
 
 APGPlayer::APGPlayer()
 {
@@ -24,6 +25,8 @@ APGPlayer::APGPlayer()
 
 	TextRenderComp = CreateDefaultSubobject<UTextRenderComponent>("TextRenderComp");
 	TextRenderComp->SetupAttachment(RootComponent);
+
+	BlockerHandlerComp = CreateDefaultSubobject<UPGBlockerHandlerComponent>("BlockerHandlerComp");
 }
 
 void APGPlayer::BeginPlay()
@@ -42,18 +45,33 @@ void APGPlayer::BeginPlay()
 
 void APGPlayer::LookUp(const FInputActionValue& Value)
 {
+	if (IsBlocking(EBlockers::MOVEMENT)) 
+	{
+		return;
+	}
+
 	const float MoveValue = Value.Get<float>() * -1.f;
 	AddControllerPitchInput(MoveValue);
 }
 
 void APGPlayer::Turn(const FInputActionValue& Value)
 {
+	if (IsBlocking(EBlockers::MOVEMENT)) 
+	{
+		return;
+	}
+
 	const float MoveValue = Value.Get<float>();
 	AddControllerYawInput(MoveValue);
 }
 
 void APGPlayer::MoveForward(const FInputActionValue& Value)
 {
+	if (IsBlocking(EBlockers::MOVEMENT)) 
+	{
+		return;
+	}
+
 	const float TurnValue = Value.Get<float>();
 	FRotator ControlRot = GetControlRotation();
 	ControlRot.Pitch = 0.0f;
@@ -64,6 +82,11 @@ void APGPlayer::MoveForward(const FInputActionValue& Value)
 
 void APGPlayer::MoveRight(const FInputActionValue& Value)
 {
+	if (IsBlocking(EBlockers::MOVEMENT)) 
+	{
+		return;
+	}
+
 	const float TurnValue = Value.Get<float>();
 	FRotator ControlRot = GetControlRotation();
 	ControlRot.Pitch = 0.0f;
@@ -104,5 +127,10 @@ void APGPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		PEI->BindAction(InputData->Interact, ETriggerEvent::Started, this, &APGPlayer::TryInteract);
 	}
 
+}
+
+bool APGPlayer::IsBlocking(const EBlockers& Blocker)
+{
+	return BlockerHandlerComp->IsBlocking(Blocker);
 }
 

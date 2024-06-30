@@ -99,6 +99,11 @@ void APGPlayer::MoveRight(const FInputActionValue& Value)
 
 void APGPlayer::TriggerJump()
 {
+	if (IsBlocking(EBlockers::MOVEMENT)) 
+	{
+		return;
+	}
+
 	Jump();
 }
 

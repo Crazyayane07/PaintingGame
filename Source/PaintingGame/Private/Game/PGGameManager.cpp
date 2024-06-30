@@ -31,11 +31,11 @@ void APGGameManager::GenerateMosaic()
 	for (int i = 0; i < TrueSize; i++)
 	{
 		int randomColorId = UKismetMathLibrary::RandomInteger(AllowedColors.Num());
-		Mosaic.Add(AllowedColors[randomColorId]);
+		Mosaic.Add(randomColorId);
 	}
 }
 
-TArray<FLinearColor> APGGameManager::GetMosaic()
+TArray<int32> APGGameManager::GetMosaic()
 {
 	return Mosaic;
 }

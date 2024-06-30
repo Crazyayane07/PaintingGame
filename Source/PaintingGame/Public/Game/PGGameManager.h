@@ -24,7 +24,7 @@ public:
 	int32 MosaicSize;
 
 	UFUNCTION(BlueprintPure, Category = "Mosaic")
-	TArray<FLinearColor> GetMosaic();
+	TArray<int32> GetMosaic();
 
 	UFUNCTION(BlueprintPure, Category = "Mosaic")
 	int32 GetMosaicSize();
@@ -38,6 +38,6 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Game")
 	void StartGame();
 
-	TArray<FLinearColor> Mosaic;
+	TArray<int32> Mosaic;
 
 };

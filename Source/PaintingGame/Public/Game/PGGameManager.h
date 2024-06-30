@@ -23,11 +23,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetUp")
 	int32 MosaicSize;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "SetUp")
+	float GameDuration;
+
 	UFUNCTION(BlueprintPure, Category = "Mosaic")
 	TArray<int32> GetMosaic();
 
 	UFUNCTION(BlueprintPure, Category = "Mosaic")
 	int32 GetMosaicSize();
+
+	UFUNCTION(BlueprintPure, Category = "Game|Time")
+	double GameTimeLeft();
 
 protected:
 
@@ -38,6 +44,13 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Game")
 	void StartGame();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Game")
+	void EndGame();
+
 	TArray<int32> Mosaic;
 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Game|Time")
+	double StartGameTime;
+
+	void CheckGameTime();
 };

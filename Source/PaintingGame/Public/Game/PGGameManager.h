@@ -35,18 +35,22 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Game|Time")
 	double GameTimeLeft();
 
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+
 protected:
 
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable, Category = "Game")
 	void GenerateMosaic();
 
-	UFUNCTION(BlueprintImplementableEvent, Category = "Game")
+	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Game")
 	void StartGame();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Game")
 	void EndGame();
 
+	UPROPERTY(BlueprintReadOnly, Replicated, Category = "Game")
 	TArray<int32> Mosaic;
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Game|Time")

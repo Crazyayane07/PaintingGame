@@ -4,6 +4,7 @@
 #include "Game/PGGameManager.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
 
 APGGameManager::APGGameManager()
 {
@@ -12,14 +13,12 @@ APGGameManager::APGGameManager()
 	GameDuration = 20.0;
 
 	SetActorTickEnabled(false);
+	bReplicates = true;
 }
 
 void APGGameManager::BeginPlay()
 {
 	Super::BeginPlay();	
-
-	GenerateMosaic();
-	StartGame();
 }
 
 void APGGameManager::Tick(float DeltaTime)
@@ -64,4 +63,11 @@ TArray<int32> APGGameManager::GetMosaic()
 int32 APGGameManager::GetMosaicSize()
 {
 	return MosaicSize;
+}
+
+void APGGameManager::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(APGGameManager, Mosaic);
 }

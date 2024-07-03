@@ -53,7 +53,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Replicated, Category = "Game")
 	TArray<int32> Mosaic;
 
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadWrite, Category = "Game|Time")
+	UPROPERTY(VisibleDefaultsOnly, Replicated, BlueprintReadWrite, Category = "Game|Time")
 	double StartGameTime;
 
 	void CheckGameTime();

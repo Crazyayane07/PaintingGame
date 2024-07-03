@@ -70,4 +70,5 @@ void APGGameManager::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLi
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME(APGGameManager, Mosaic);
+	DOREPLIFETIME(APGGameManager, StartGameTime);
 }

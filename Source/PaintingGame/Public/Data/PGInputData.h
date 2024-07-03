@@ -30,6 +30,9 @@ public:
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
     UInputAction* Turn;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UInputAction* Jump;
+
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-    UInputAction* Jump;
+    UInputAction* QuitGame;
 };

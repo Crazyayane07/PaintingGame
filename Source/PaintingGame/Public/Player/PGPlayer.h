@@ -37,7 +37,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UCameraComponent* CameraComp;
 
-	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UPGBlockerHandlerComponent* BlockerHandlerComp;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
@@ -65,6 +65,9 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, category = "Interaction")
 	void TryInteract();
+
+	UFUNCTION(BlueprintImplementableEvent, category = "Game")
+	void QuitGame();
 
 	void TriggerJump();
 

@@ -130,6 +130,7 @@ void APGPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		PEI->BindAction(InputData->MoveRight, ETriggerEvent::Triggered, this, &APGPlayer::MoveRight);
 		PEI->BindAction(InputData->Jump, ETriggerEvent::Started, this, &APGPlayer::TriggerJump);
 		PEI->BindAction(InputData->Interact, ETriggerEvent::Started, this, &APGPlayer::TryInteract);
+		PEI->BindAction(InputData->QuitGame, ETriggerEvent::Started, this, &APGPlayer::QuitGame);
 	}
 
 }
